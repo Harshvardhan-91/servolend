@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // CORS configuration
-const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:3000'];
+const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:3000', 'https://servolend.vercel.app', 'https://servolend-server.onrender.com'];
 
 const corsOptions = {
   origin: function (origin, callback) {
