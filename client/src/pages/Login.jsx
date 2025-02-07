@@ -11,7 +11,7 @@ const Login = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      const from = location.state?.from?.pathname || "/user";
+      const from = location.state?.from?.pathname || "/profile";
       navigate(from, { replace: true });
     }
   }, [isAuthenticated, navigate, location]);

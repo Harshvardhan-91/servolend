@@ -5,7 +5,8 @@ import { getProfile, updateProfile } from '../services/auth';
 import ProfileStatus from '../components/user/ProfileStatus';
 import EditProfileForm from '../components/user/EditProfileForm';
 
-const UserDashboard = () => {
+
+const User = () => {
   const { user, handleLogout } = useAuth();
   const [profileData, setProfileData] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -114,4 +115,4 @@ const UserDashboard = () => {
   );
 };
 
-export default UserDashboard;
+export default User;
