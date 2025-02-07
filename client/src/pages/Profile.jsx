@@ -1,12 +1,11 @@
-// client/src/pages/UserDashboard.jsx
+// client/src/pages/Profile.jsx
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { getProfile, updateProfile } from '../services/auth';
 import ProfileStatus from '../components/user/ProfileStatus';
 import EditProfileForm from '../components/user/EditProfileForm';
 
-
-const User = () => {
+const Profile = () => {
   const { user, handleLogout } = useAuth();
   const [profileData, setProfileData] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -115,4 +114,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default Profile;

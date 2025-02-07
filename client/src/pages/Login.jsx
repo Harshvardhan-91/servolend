@@ -1,8 +1,8 @@
 // client/src/pages/Login.jsx
-import { useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-import GoogleAuthButton from "../components/auth/GoogleAuthButton";
+import { useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import GoogleAuthButton from '../components/auth/GoogleAuthButton';
 
 const Login = () => {
   const { isAuthenticated } = useAuth();
@@ -11,7 +11,7 @@ const Login = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      const from = location.state?.from?.pathname || "/profile";
+      const from = location.state?.from?.pathname || '/user';
       navigate(from, { replace: true });
     }
   }, [isAuthenticated, navigate, location]);
@@ -29,9 +29,7 @@ const Login = () => {
           <GoogleAuthButton />
 
           <div className="flex items-center justify-center">
-            <Link
-              to="/"
-              className="font-medium text-blue-600 hover:text-blue-500">
+            <Link to="/" className="font-medium text-blue-600 hover:text-blue-500">
               Return to Home
             </Link>
           </div>
