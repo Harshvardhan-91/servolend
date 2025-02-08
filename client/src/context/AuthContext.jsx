@@ -1,3 +1,4 @@
+// File: AuthContext.jsx
 import { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { checkAuthStatus, logout } from '../services/auth';
@@ -13,13 +14,9 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const initializeAuth = async () => {
       try {
-        console.log('Checking authentication status...');
         const userData = await checkAuthStatus();
         if (userData) {
-          console.log('User is authenticated:', userData.id);
           setUser(userData);
-        } else {
-          console.log('No authenticated user found');
         }
       } catch (error) {
         console.error('Auth initialization error:', error);
@@ -57,12 +54,20 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const updateUserData = (newData) => {
+    setUser((prevUser) => ({
+      ...prevUser,
+      ...newData,
+    }));
+  };
+
   const value = {
     user,
     loading,
     error,
     handleLogin,
     handleLogout,
+    updateUserData, // New function to update user data
     isAuthenticated: !!user,
   };
 

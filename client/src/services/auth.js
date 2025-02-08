@@ -65,7 +65,49 @@ export const checkAuthStatus = async () => {
   }
 };
 
-// User profile functions
+// Profile functions
+export const updateKycStatus = async (status) => {
+  try {
+    const response = await fetch(`${API_URL}/user/kyc-status`, {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ status }),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || 'Failed to update KYC status');
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('KYC status update error:', error);
+    throw error;
+  }
+};
+
+export const deleteProfile = async () => {
+  try {
+    const response = await fetch(`${API_URL}/user/profile`, {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || 'Failed to delete profile');
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Delete profile error:', error);
+    throw error;
+  }
+};
+
 export const getProfile = async () => {
   try {
     const response = await fetch(`${API_URL}/user/profile`, {
@@ -77,7 +119,8 @@ export const getProfile = async () => {
       throw new Error(error.message || 'Failed to fetch profile');
     }
 
-    return await response.json();
+    const data = await response.json();
+    return data;
   } catch (error) {
     console.error('Get profile error:', error);
     throw error;
@@ -107,21 +150,72 @@ export const updateProfile = async (profileData) => {
   }
 };
 
-export const deleteProfile = async () => {
+export const uploadDocument = async (file, documentType) => {
   try {
-    const response = await fetch(`${API_URL}/user/profile`, {
-      method: 'DELETE',
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('documentType', documentType);
+
+    const response = await fetch(`${API_URL}/user/documents/upload`, {
+      method: 'POST',
       credentials: 'include',
+      body: formData,
     });
 
     if (!response.ok) {
       const error = await response.json();
-      throw new Error(error.message || 'Failed to delete profile');
+      throw new Error(error.message || 'Failed to upload document');
     }
 
     return await response.json();
   } catch (error) {
-    console.error('Delete profile error:', error);
+    console.error('Document upload error:', error);
+    throw error;
+  }
+};
+
+export const updateCommunicationPreferences = async (preferences) => {
+  try {
+    const response = await fetch(`${API_URL}/user/preferences`, {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(preferences),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || 'Failed to update communication preferences');
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Communication preferences update error:', error);
+    throw error;
+  }
+};
+
+export const updateDocument = async (documentData) => {
+  try {
+    const response = await fetch(`${API_URL}/user/documents`, {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(documentData),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || 'Failed to update document');
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Document update error:', error);
     throw error;
   }
 };
