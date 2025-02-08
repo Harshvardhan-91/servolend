@@ -1,27 +1,27 @@
-// src/context/AdminAuthContext.jsx
 import { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const AdminAuthContext = createContext(null);
 
 export const AdminAuthProvider = ({ children }) => {
-  const [admin, setAdmin] = useState(() => {
-    // Check if admin data exists in localStorage
-    const savedAdmin = localStorage.getItem('adminData');
-    return savedAdmin ? JSON.parse(savedAdmin) : null;
-  });
-  const [loading, setLoading] = useState(false);
+  const [admin, setAdmin] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  // Update localStorage whenever admin state changes
   useEffect(() => {
-    if (admin) {
-      localStorage.setItem('adminData', JSON.stringify(admin));
-    } else {
-      localStorage.removeItem('adminData');
+    // Initialize admin state from localStorage on mount
+    const savedAdmin = localStorage.getItem('adminData');
+    if (savedAdmin) {
+      try {
+        setAdmin(JSON.parse(savedAdmin));
+      } catch (error) {
+        console.error('Error parsing admin data:', error);
+        localStorage.removeItem('adminData');
+      }
     }
-  }, [admin]);
+    setLoading(false);
+  }, []);
 
   const handleAdminLogin = async (credentials) => {
     setLoading(true);
@@ -36,6 +36,7 @@ export const AdminAuthProvider = ({ children }) => {
           role: 'loan_officer'
         };
         setAdmin(adminData);
+        localStorage.setItem('adminData', JSON.stringify(adminData));
         navigate('/admin/dashboard');
         return true;
       } else {
@@ -55,11 +56,17 @@ export const AdminAuthProvider = ({ children }) => {
     navigate('/admin/login');
   };
 
-  const checkAdminAuthStatus = () => {
+  const checkAdminAuthStatus = async () => {
     const savedAdmin = localStorage.getItem('adminData');
     if (savedAdmin) {
-      setAdmin(JSON.parse(savedAdmin));
-      return true;
+      try {
+        const adminData = JSON.parse(savedAdmin);
+        setAdmin(adminData);
+        return true;
+      } catch (error) {
+        console.error('Error checking admin auth status:', error);
+        localStorage.removeItem('adminData');
+      }
     }
     return false;
   };

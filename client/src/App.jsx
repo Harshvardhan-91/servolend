@@ -65,9 +65,9 @@ const App = () => {
             >
               <Route index element={<Navigate to="/admin/dashboard" replace />} />
               <Route path="dashboard" element={<AdminDashboard />} />
-              <Route path="applications/:id" element={<ApplicationReview />} />
-              <Route path="verification/:id" element={<DocumentVerification />} />
-              <Route path="assessment/:id" element={<LoanAssesment />} />
+              <Route path="applications" element={<ApplicationReview />} />
+              <Route path="verification" element={<DocumentVerification />} />
+              <Route path="assessment" element={<LoanAssesment />} />
             </Route>
 
             {/* Fallback route */}

@@ -6,7 +6,7 @@ import {
   FileText, User, Building, Phone, Mail, 
   Calendar, DollarSign, CheckCircle, XCircle,
   AlertTriangle, MessageCircle, Clock, Download,
-  Shield, CreditCard, Briefcase, Home
+  Shield, CreditCard, Briefcase, Home, ChevronRight
 } from 'lucide-react';
 
 // Mock data - replace with API call
