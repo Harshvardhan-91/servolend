@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
-import { 
-  Menu, X, CreditCard, User, LogOut, 
-  FileText, Calculator, Shield, Building2
+import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import {
+  Menu,
+  X,
+  CreditCard,
+  User,
+  LogOut,
+  FileText,
+  Calculator,
+  Shield,
+  Building2,
 } from 'lucide-react';
 
 const Navbar = () => {
@@ -16,10 +23,7 @@ const Navbar = () => {
         <div className="flex justify-between h-20">
           {/* Logo and Brand */}
           <div className="flex items-center">
-            <Link 
-              to="/" 
-              className="flex items-center space-x-3 group"
-            >
+            <Link to="/" className="flex items-center space-x-3 group">
               <Shield className="h-8 w-8 text-blue-600 group-hover:text-blue-700 transition-colors" />
               <div className="flex flex-col">
                 <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
@@ -35,7 +39,7 @@ const Navbar = () => {
             {isAuthenticated ? (
               <>
                 <Link
-                  to="/applications"
+                  to="/user/applications"
                   className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors duration-200"
                 >
                   <FileText className="h-5 w-5" />
@@ -49,7 +53,7 @@ const Navbar = () => {
                   <span>Loan Calculator</span>
                 </Link>
                 <Link
-                  to="/dashboard"
+                  to="/user/dashboard"
                   className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors duration-200"
                 >
                   <Building2 className="h-5 w-5" />
@@ -57,7 +61,7 @@ const Navbar = () => {
                 </Link>
                 <div className="h-6 w-px bg-gray-200"></div>
                 <Link
-                  to="/profile"
+                  to="/user"
                   className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors duration-200"
                 >
                   <User className="h-5 w-5" />
@@ -101,11 +105,7 @@ const Navbar = () => {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
             >
-              {isMobileMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
+              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
         </div>

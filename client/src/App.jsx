@@ -36,7 +36,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/admin/login" element={<AdminLogin />} />
-            
+
             {/* User routes */}
             <Route
               path="/user"
@@ -46,11 +46,11 @@ const App = () => {
                 </ProtectedRoute>
               }
             >
-              <Route index element={<UserDashboard />} />
+              <Route index element={<UserProfile />} />
               <Route path="applications" element={<LoanApplication />} />
               <Route path="repayments" element={<LoanRepayment />} />
               <Route path="transactions" element={<TransactionHistory />} />
-              <Route path="profile" element={<UserProfile />} />
+              <Route path="dashboard" element={<UserDashboard />} />
               <Route path="settings" element={<Settings />} />
             </Route>
 

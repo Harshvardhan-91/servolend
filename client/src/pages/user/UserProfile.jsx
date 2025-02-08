@@ -227,7 +227,7 @@ const UserProfile = () => {
 
           <button
             onClick={handleLogout}
-            className="ml-auto px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-white transition-colors"
+            className="ml-auto px-4 z-10 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-white transition-colors cursor-pointer"
           >
             Logout
           </button>
