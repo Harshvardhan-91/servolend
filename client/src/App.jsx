@@ -3,7 +3,7 @@ import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Layout from './components/UI/layout/Layout';
+import Layout from './components/layout/Layout.jsx';
 import UserDashboard from './pages/user/UserDashboard';
 import LoanApplication from './pages/user/LoanApplication';
 import LoanRepayment from './pages/user/LoanRepayment';
@@ -26,11 +26,11 @@ const App = () => {
               </ProtectedRoute>
             }
           >
-            <Route index element={<UserDashboard />} />
+            <Route index element={<UserProfile />} />
             <Route path="applications" element={<LoanApplication />} />
             <Route path="repayments" element={<LoanRepayment />} />
             <Route path="transactions" element={<TransactionHistory />} />
-            <Route path="profile" element={<UserProfile />} />
+            <Route path="dashboard" element={<UserDashboard />} />
             <Route path="settings" element={<Settings />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
